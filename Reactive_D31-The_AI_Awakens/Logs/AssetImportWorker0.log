@@ -77,3 +77,97 @@ Received Import Request.
 Start importing Packages/com.unity.ext.nunit using Guid(25a477c2f24db8778a4179421a32cc21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '144e6187aee63fe2f685ec8e314026b0') in 0.005439 seconds
   Import took 0.008694 seconds .
 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.000412 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for OSXStandalone target not found
+Refreshing native plugins compatible for Editor in 0.25 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.050 seconds
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.22 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 1106 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 108.4 MB.
+System memory in use after: 108.5 MB.
+
+Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 1554.
+Total: 2.612944 ms (FindLiveObjects: 0.247299 ms CreateObjectMapping: 0.058360 ms MarkObjects: 2.233083 ms  DeleteObjects: 0.072819 ms)
+
+========================================================================
+Received Import Request.
+  Time since last request: 239.358549 seconds.
+  path: Packages/com.unity.ide.vscode
+  artifactKey: Guid(1c61a04a5b7737c4d16673d64be4194e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Packages/com.unity.ide.vscode using Guid(1c61a04a5b7737c4d16673d64be4194e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e53a774b851a28b4531bbca1a6bf0b6c') in 0.005300 seconds
+  Import took 0.007857 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 1.666537 seconds.
+  path: Packages/com.unity.ide.visualstudio
+  artifactKey: Guid(9db636ca49aa246019dd93b7c8b689f4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Packages/com.unity.ide.visualstudio using Guid(9db636ca49aa246019dd93b7c8b689f4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'dc481c3b0e9a0f0f42836afdb99a254f') in 0.001675 seconds
+  Import took 0.004106 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 17.777675 seconds.
+  path: Assets/Scenes/map1a.unity
+  artifactKey: Guid(d688035d1d3e46e4ab0d7f9809c1a418) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/map1a.unity using Guid(d688035d1d3e46e4ab0d7f9809c1a418) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '59632c7bed11cf6beb9df484d45797bd') in 0.009613 seconds
+  Import took 0.012113 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 35.636221 seconds.
+  path: Assets/Scenes/map1b.unity
+  artifactKey: Guid(0641876831edc4642802db0190b6d3fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/map1b.unity using Guid(0641876831edc4642802db0190b6d3fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9a3124b88bcf12a5a28d254a53de0fb0') in 0.002418 seconds
+  Import took 0.005562 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 23.832721 seconds.
+  path: Assets/Scenes/map2a.unity
+  artifactKey: Guid(0a62e4c118d791748985202cd162a59f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/map2a.unity using Guid(0a62e4c118d791748985202cd162a59f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5b7bacdebb93a97273b876877e3848e6') in 0.002527 seconds
+  Import took 0.006269 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 20.930911 seconds.
+  path: Assets/Scenes/map2b.unity
+  artifactKey: Guid(7abbdae47a2818e47af12a76f6c6a685) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/map2b.unity using Guid(7abbdae47a2818e47af12a76f6c6a685) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2e224253da4a15d1f47342fb8b3bc7f5') in 0.002262 seconds
+  Import took 0.005309 seconds .
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.000385 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for OSXStandalone target not found
+Refreshing native plugins compatible for Editor in 0.26 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.070 seconds
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.23 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 1106 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 108.7 MB.
+System memory in use after: 108.7 MB.
+
+Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 1556.
+Total: 3.082581 ms (FindLiveObjects: 0.282065 ms CreateObjectMapping: 0.073212 ms MarkObjects: 2.645993 ms  DeleteObjects: 0.079229 ms)
+
