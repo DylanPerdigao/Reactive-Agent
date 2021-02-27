@@ -78,7 +78,17 @@ public class RobotUnit : MonoBehaviour
 
     public void applyForce(float angle, float strength)
     {
-        listAngleStr.Add(new Tuple<float, float>(angle, strength));
+        if (resourcesGathered < maxObjects)
+        {
+            listAngleStr.Add(new Tuple<float, float>(angle, strength));
+        }
+        else
+        {
+            listAngleStr.Clear(); // cleanup
+            rb.velocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
+        }
+        
     }
 
 

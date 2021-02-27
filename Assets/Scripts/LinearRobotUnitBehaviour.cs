@@ -12,7 +12,9 @@ public class LinearRobotUnitBehaviour : RobotUnit
     public float wallValue;
     public float wallAngle;
 
-    public float directionAngle;
+    public float anglep45;
+    public float anglem45;
+
     void Update()
     {
 
@@ -28,7 +30,23 @@ public class LinearRobotUnitBehaviour : RobotUnit
 
         // apply to the ball
         applyForce(resouceAngle, resourceValue); // go towards
-        applyForce((wallAngle + 180) % 360, wallValue); 
+
+        anglem45 = Mathf.DeltaAngle(wallAngle + 135, resouceAngle);
+        anglep45 = Mathf.DeltaAngle(wallAngle + 225, resouceAngle);
+
+        if (Mathf.DeltaAngle(wallAngle + 135, resouceAngle) > Mathf.DeltaAngle(wallAngle + 225, resouceAngle))
+        {
+            applyForce(wallAngle + 225, wallValue);
+        }
+        else
+        {
+            applyForce(wallAngle + 135, wallValue);
+        }
+
+
+
+        
+         
 
 
 
