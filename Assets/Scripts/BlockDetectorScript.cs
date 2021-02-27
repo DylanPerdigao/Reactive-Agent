@@ -91,6 +91,7 @@ public class BlockDetectorScript : MonoBehaviour
                         Debug.DrawRay(this.transform.position, Quaternion.AngleAxis((-angleOfSensors * i), initialTransformUp) * initialTransformFwd * hit.distance, Color.red);
                     }
                     ObjectInfo info = new ObjectInfo(hit.distance, angleOfSensors * i + 90, hit.transform.gameObject);
+                    info.Unpaint();
                     objectsInformation.Add(info);
                 }
             }

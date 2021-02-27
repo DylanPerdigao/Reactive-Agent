@@ -36,4 +36,9 @@ public class ObjectInfo : IEquatable<ObjectInfo>, IComparable<ObjectInfo>
     {
         obj.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
     }
+
+    public void Unpaint()
+    {
+        obj.GetComponent<Renderer>().material.SetColor("_Color", Color.white);
+    }
 }
