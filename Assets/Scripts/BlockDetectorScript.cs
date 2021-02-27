@@ -13,7 +13,7 @@ public class BlockDetectorScript : MonoBehaviour
     public float strength;
     public float angleToClosestObj;
     public int numObjects;
-    public bool debugMode;
+    public bool debugMode = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,6 +26,14 @@ public class BlockDetectorScript : MonoBehaviour
     void FixedUpdate()
     {
         // YOUR CODE HERE
+        ObjectInfo anObject;
+        anObject = GetClosestWall();
+        anObject.Paint();
+        if (anObject != null)
+        {
+            angleToClosestObj = anObject.angle;
+            strength = 0.5f / (anObject.distance + 1.0f);
+        }
 
     }
 
@@ -49,5 +57,47 @@ public class BlockDetectorScript : MonoBehaviour
     {
         // YOUR CODE HERE
         throw new NotImplementedException();
+    }
+
+    public ObjectInfo[] GetVisibleWall()
+    {
+        return (ObjectInfo[])GetVisibleObjects("Wall").ToArray();
+    }
+
+    public ObjectInfo GetClosestWall()
+    {
+        ObjectInfo[] a = (ObjectInfo[])GetVisibleObjects("Wall").ToArray();
+        if (a.Length == 0)
+        {
+            return null;
+        }
+        return a[a.Length - 1];
+    }
+
+    public List<ObjectInfo> GetVisibleObjects(string objectTag)
+    {
+        RaycastHit hit;
+        List<ObjectInfo> objectsInformation = new List<ObjectInfo>();
+
+        for (int i = 0; i * angleOfSensors < 360f; i++)
+        {
+            if (Physics.Raycast(this.transform.position, Quaternion.AngleAxis(-angleOfSensors * i, initialTransformUp) * initialTransformFwd, out hit, rangeOfSensors))
+            {
+
+                if (hit.transform.gameObject.CompareTag(objectTag))
+                {
+                    if (debugMode)
+                    {
+                        Debug.DrawRay(this.transform.position, Quaternion.AngleAxis((-angleOfSensors * i), initialTransformUp) * initialTransformFwd * hit.distance, Color.red);
+                    }
+                    ObjectInfo info = new ObjectInfo(hit.distance, angleOfSensors * i + 90, hit.transform.gameObject);
+                    objectsInformation.Add(info);
+                }
+            }
+        }
+
+        objectsInformation.Sort();
+
+        return objectsInformation;
     }
 }

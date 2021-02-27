@@ -1,13 +1,16 @@
 ﻿using System;
+using UnityEngine;
 public class ObjectInfo : IEquatable<ObjectInfo>, IComparable<ObjectInfo>
 {
     public float distance {get;}
     public float angle { get; }
+    public GameObject obj;
 
-    public ObjectInfo(float distance, float angle)
+    public ObjectInfo(float distance, float angle, GameObject obj)
     {
         this.distance = distance;
         this.angle = angle;
+        this.obj = obj;
     }
 
     public bool Equals(ObjectInfo other)
@@ -26,5 +29,11 @@ public class ObjectInfo : IEquatable<ObjectInfo>, IComparable<ObjectInfo>
             return 0;
         }
         return -1;
+    }
+
+
+    public void Paint()
+    {
+        obj.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
     }
 }
