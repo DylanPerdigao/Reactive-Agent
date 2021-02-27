@@ -15,21 +15,17 @@ public class BlockDetectorScript : MonoBehaviour
     public int numObjects;
     public bool debugMode = true;
     // Start is called before the first frame update
-    void Start()
-    {
-
+    void Start(){
         initialTransformUp = this.transform.up;
         initialTransformFwd = this.transform.forward;
     }
 
     // Update is called once per frame
-    void FixedUpdate()
-    {
+    void FixedUpdate(){
         // YOUR CODE HERE
         ObjectInfo anObject;
         anObject = GetClosestWall();
-        if (anObject != null)
-        {
+        if (anObject != null){
             anObject.Paint();
             angleToClosestObj = anObject.angle;
             strength = 0.3f / (anObject.distance + 1.0f);
