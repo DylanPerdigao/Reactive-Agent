@@ -30,7 +30,7 @@ public class ResourceDetectorScript : MonoBehaviour
         if (anObject != null)
         {
             angle = anObject.angle;
-            strength = 1.0f / (anObject.distance + 1.0f);
+            strength = .5f / (anObject.distance + 1.0f);
         }
         else
         { // no object detected
