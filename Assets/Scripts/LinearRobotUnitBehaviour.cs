@@ -26,11 +26,11 @@ public class LinearRobotUnitBehaviour : RobotUnit
 
         wallValue = weightResource * blockDetector.GetLinearOuput();
 
-        directionAngle = ((wallAngle + resouceAngle) / 2) % 360;
         // apply to the ball
-        applyForce(directionAngle, (resourceValue + wallValue) / 2); // go towards
+        applyForce(resouceAngle, resourceValue); // go towards
+        applyForce((wallAngle + 180) % 360, wallValue); 
 
-        
+
 
     }
 

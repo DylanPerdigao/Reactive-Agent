@@ -32,7 +32,7 @@ public class BlockDetectorScript : MonoBehaviour
         if (anObject != null)
         {
             angleToClosestObj = anObject.angle;
-            strength = 0.5f / (anObject.distance + 1.0f);
+            strength = 0.3f / (anObject.distance + 1.0f);
         }
 
     }
