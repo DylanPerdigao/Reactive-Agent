@@ -250,7 +250,7 @@ MonoBehaviour:
   weightResource: 0.4
   resourceValue: 0
   resouceAngle: 0
-  weightWall: 0.2
+  weightWall: -0.2
   wallValue: 0
   wallAngle: 0
   anglep45: 0
