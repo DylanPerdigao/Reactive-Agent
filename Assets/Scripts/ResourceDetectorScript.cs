@@ -30,7 +30,7 @@ public class ResourceDetectorScript : MonoBehaviour
         if (anObject != null)
         {
             angle = anObject.angle;
-            strength = .5f / (anObject.distance + 1.0f);
+            strength = 1.0f / (anObject.distance + 1.0f);
         }
         else
         { // no object detected
@@ -93,7 +93,7 @@ public class ResourceDetectorScript : MonoBehaviour
                 {
                     if (debug_mode)
                     {
-                        Debug.DrawRay(this.transform.position, Quaternion.AngleAxis((-angleOfSensors * i), initialTransformUp) * initialTransformFwd * hit.distance, Color.red);
+                        Debug.DrawRay(this.transform.position, Quaternion.AngleAxis((-angleOfSensors * i), initialTransformUp) * initialTransformFwd * hit.distance, Color.blue);
                     }
                     ObjectInfo info = new ObjectInfo(hit.distance, angleOfSensors * i + 90, hit.transform.gameObject);
                     objectsInformation.Add(info);

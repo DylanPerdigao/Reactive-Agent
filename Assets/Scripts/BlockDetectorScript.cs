@@ -28,7 +28,7 @@ public class BlockDetectorScript : MonoBehaviour
         if (anObject != null){
             anObject.Paint();
             angleToClosestObj = anObject.angle;
-            strength = 0.3f / (anObject.distance + 1.0f);
+            strength = 1.0f / (anObject.distance + 1.0f);
         }
 
     }
