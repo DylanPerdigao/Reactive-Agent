@@ -1062,14 +1062,6 @@ PrefabInstance:
       propertyPath: countText
       value: 
       objectReference: {fileID: 1286279754}
-    - target: {fileID: 1022615238940490695, guid: b606527f8af28664a894844f3f526637, type: 3}
-      propertyPath: weightWall
-      value: -0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1022615238940490695, guid: b606527f8af28664a894844f3f526637, type: 3}
-      propertyPath: blockDetector
-      value: 
-      objectReference: {fileID: 3671642739088144380}
     - target: {fileID: 4098859518129120615, guid: b606527f8af28664a894844f3f526637, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -1120,17 +1112,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b606527f8af28664a894844f3f526637, type: 3}
---- !u!114 &3671642739088144380 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1625669444414051546, guid: b606527f8af28664a894844f3f526637, type: 3}
-  m_PrefabInstance: {fileID: 3671642739088144379}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea0a6ac58e2ef4bb184d9c065cbf536b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &5229371597809290880
 PrefabInstance:
   m_ObjectHideFlags: 0

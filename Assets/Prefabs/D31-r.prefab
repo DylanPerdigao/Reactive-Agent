@@ -247,7 +247,7 @@ MonoBehaviour:
   resourcesDetector: {fileID: 7314612682239532039}
   blockDetector: {fileID: 1625669444414051546}
   debugMode: 1
-  weightResource: 0.4
+  weightResource: 0.3
   resourceValue: 0
   resouceAngle: 0
   weightWall: -0.2
