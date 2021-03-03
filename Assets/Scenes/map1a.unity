@@ -1063,6 +1063,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1286279754}
     - target: {fileID: 1022615238940490695, guid: b606527f8af28664a894844f3f526637, type: 3}
+      propertyPath: weightWall
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1022615238940490695, guid: b606527f8af28664a894844f3f526637, type: 3}
       propertyPath: blockDetector
       value: 
       objectReference: {fileID: 3671642739088144380}

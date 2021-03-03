@@ -250,9 +250,11 @@ MonoBehaviour:
   weightResource: 1
   resourceValue: 0
   resouceAngle: 0
-  wallValue: 0
+  weightWall: 0
+  wallValue: 1
   wallAngle: 0
-  directionAngle: 0
+  anglep45: 0
+  anglem45: 0
 --- !u!1 &6947973256512168921
 GameObject:
   m_ObjectHideFlags: 0
