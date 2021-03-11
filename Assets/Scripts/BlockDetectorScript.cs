@@ -14,6 +14,7 @@ public class BlockDetectorScript : MonoBehaviour
     public float angleToClosestObj;
     public int numObjects;
     public bool debugMode = true;
+    public float std, mean;
     // Start is called before the first frame update
     void Start(){
         initialTransformUp = this.transform.up;
@@ -46,13 +47,13 @@ public class BlockDetectorScript : MonoBehaviour
     public virtual float GetGaussianOutput()
     {
         // YOUR CODE HERE
-        throw new NotImplementedException();
+        return (float) (1 / (std * Math.Sqrt(2 * Math.PI)) * Math.Exp(-Math.Pow(strength - mean, 2) / 2 * std * std));
     }
 
     public virtual float GetLogaritmicOutput()
     {
         // YOUR CODE HERE
-        throw new NotImplementedException();
+        return (float) -Math.Log(strength);
     }
 
     public ObjectInfo[] GetVisibleWall()
