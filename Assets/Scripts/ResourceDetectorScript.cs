@@ -12,7 +12,7 @@ public class ResourceDetectorScript : MonoBehaviour
     public float strength;
     public float angle;
     public int numObjects;
-    public float std, mean;
+    public float std, mean, infLimitX = 0.25f, supLimitX = 0.75f, infLimitY = 0.00f, supLimitY = 0.6f;
 
     public bool debug_mode;
 
@@ -49,21 +49,62 @@ public class ResourceDetectorScript : MonoBehaviour
 
     public float GetLinearOuput()
     {
-        return strength;
+        if (strength >= infLimitX && strength <= supLimitX)
+        {
+            if (strength >= supLimitY)
+            {
+                return supLimitY;
+            }
+
+            if (strength <= infLimitY)
+            {
+                return infLimitY;
+            }
+
+            return strength;
+        }
+
+        return infLimitY;
     }
 
     public virtual float GetGaussianOutput()
     {
         // YOUR CODE HERE
-        return (float) (1 / (std * Math.Sqrt(2 * Math.PI)) * Math.Exp(-Math.Pow(strength - mean, 2) / 2 * std * std));
+        if (strength >= infLimitX && strength <= supLimitX)
+        {
+            if (strength >= supLimitY)
+            {
+                return supLimitY;
+            }
+
+            if (strength <= infLimitY)
+            {
+                return infLimitY;
+            }
+
+            return (float) (1 / (std * Math.Sqrt(2 * Math.PI)) * Math.Exp(-Math.Pow(strength - mean, 2) / 2 * std * std));
+        }
+
+        return infLimitY;
     }
 
     public virtual float GetLogaritmicOutput()
     {
         // YOUR CODE HERE
-        return (float) -Math.Log(strength);
+        if (strength >= infLimitX && strength <= supLimitX)
+        {
+            if (strength >= supLimitY)
+            {
+                return supLimitY;
+            }
+            if (strength <= infLimitY)
+            {
+                return infLimitY;
+            }
+            return (float) -Math.Log(strength);
+        }
+        return infLimitY;
     }
-
 
     public ObjectInfo[] GetVisiblePickups()
     {

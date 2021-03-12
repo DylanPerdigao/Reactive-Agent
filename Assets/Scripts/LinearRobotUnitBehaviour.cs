@@ -28,9 +28,9 @@ public class LinearRobotUnitBehaviour : RobotUnit
 
         wallAngle = blockDetector.GetAngleToClosestObstacle() % 360f;
 
-        //wallValue = weightWall * blockDetector.GetLinearOuput();
+        wallValue = weightWall * blockDetector.GetLinearOuput();
         //wallValue = weightWall * blockDetector.GetLogaritmicOutput();
-        wallValue = weightWall * blockDetector.GetGaussianOutput();
+        //wallValue = weightWall * blockDetector.GetGaussianOutput();
 
         // apply to the ball
         applyForce(resouceAngle, resourceValue); // go towards
