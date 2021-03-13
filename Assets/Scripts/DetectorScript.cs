@@ -120,8 +120,8 @@ public class DetectorScript : MonoBehaviour
                             Quaternion.AngleAxis((-angleOfSensors * i), initialTransformUp) * initialTransformFwd *
                             hit.distance, color);
                     }
-
                     ObjectInfo info = new ObjectInfo(hit.distance, angleOfSensors * i + 90, hit.transform.gameObject);
+                    info.Unpaint();
                     objectsInformation.Add(info);
                 }
             }

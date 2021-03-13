@@ -5,13 +5,6 @@ using UnityEngine;
 
 public class ResourceDetectorScript : DetectorScript
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        initialTransformUp = this.transform.up;
-        initialTransformFwd = this.transform.forward;
-    }
-
     // FixedUpdate is called at fixed intervals of time
     void FixedUpdate()
     {
@@ -37,12 +30,12 @@ public class ResourceDetectorScript : DetectorScript
 
     public ObjectInfo[] GetVisiblePickups()
     {
-        return (ObjectInfo[])GetVisibleObjects("Pickup",Color.blue).ToArray();
+        return GetVisibleObjects("Pickup",Color.blue).ToArray();
     }
 
     public ObjectInfo GetClosestPickup()
     {
-        ObjectInfo[] a = (ObjectInfo[])GetVisibleObjects("Pickup",Color.blue).ToArray();
+        ObjectInfo[] a = GetVisiblePickups();
         if (a.Length == 0)
         {
             return null;

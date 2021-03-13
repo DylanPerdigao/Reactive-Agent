@@ -27,12 +27,12 @@ public class BlockDetectorScript : DetectorScript
    
     public ObjectInfo[] GetVisibleWall()
     {
-        return (ObjectInfo[]) GetVisibleObjects("Wall",Color.red).ToArray();
+        return GetVisibleObjects("Wall", Color.red).ToArray();
     }
 
     public ObjectInfo GetClosestWall()
     {
-        ObjectInfo[] a = (ObjectInfo[]) GetVisibleObjects("Wall",Color.red).ToArray();
+        ObjectInfo[] a = GetVisibleWall();
         if (a.Length == 0)
         {
             return null;

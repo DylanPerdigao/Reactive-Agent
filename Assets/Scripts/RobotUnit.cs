@@ -28,11 +28,7 @@ public class RobotUnit : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //set dos limites
-        blockDetector.SetLimits(0f, 1f, 0.1f, 1f);
-        resourcesDetector.SetLimits(0f, 1f, 0.1f, 1f);
-        //guardar posicao initial
-        this.SetInitialPosition();
+
 
         //strength = 0.0f;
         maxObjects = GameObject.FindGameObjectsWithTag("Pickup").Length;
@@ -42,6 +38,12 @@ public class RobotUnit : MonoBehaviour
         this.startTime = Time.time;
         timeElapsed = Time.time - startTime;
         SetCountText();
+
+        //set dos limites
+        blockDetector.SetLimits(0.1f, 1f, 0.0f, 1f);
+        resourcesDetector.SetLimits(0.1f, 1f, 0.0f, 1f);
+        //guardar posicao initial
+        this.SetInitialPosition();
 
 
 
@@ -60,7 +62,7 @@ public class RobotUnit : MonoBehaviour
             Vector3 forceDirection = new Vector3(xComponent, 0, zComponent);
             if (debugMode)
             {
-                Debug.DrawRay(this.transform.position, (forceDirection * strength * speed) , i == 0 ? Color.black :Color.magenta );
+                Debug.DrawRay(this.transform.position, (forceDirection * strength * speed) , i == 0 ? Color.black : Color.magenta );
             }
             rb.AddForce(forceDirection * strength * speed);
 
@@ -93,6 +95,7 @@ public class RobotUnit : MonoBehaviour
 
     public void applyForce(float angle, float strength)
     {
+        //Debug.Log("A: " + angle + "\tS: " + strength);
         listAngleStr.Add(new Tuple<float, float>(angle, strength));
         
     }
