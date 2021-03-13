@@ -109,16 +109,14 @@ public class DetectorScript : MonoBehaviour
         for (int i = 0; i * angleOfSensors < 360f; i++)
         {
             if (Physics.Raycast(this.transform.position,
-                Quaternion.AngleAxis(-angleOfSensors * i, initialTransformUp) * initialTransformFwd, out hit,
-                rangeOfSensors))
+                Quaternion.AngleAxis(-angleOfSensors * i, initialTransformUp) * initialTransformFwd, out hit, rangeOfSensors))
             {
                 if (hit.transform.gameObject.CompareTag(objectTag))
                 {
                     if (debugMode)
                     {
                         Debug.DrawRay(this.transform.position,
-                            Quaternion.AngleAxis((-angleOfSensors * i), initialTransformUp) * initialTransformFwd *
-                            hit.distance, color);
+                            Quaternion.AngleAxis((-angleOfSensors * i), initialTransformUp) * initialTransformFwd * hit.distance, color);
                     }
                     ObjectInfo info = new ObjectInfo(hit.distance, angleOfSensors * i + 90, hit.transform.gameObject);
                     info.Unpaint();

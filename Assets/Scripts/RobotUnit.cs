@@ -119,7 +119,17 @@ public class RobotUnit : MonoBehaviour
         }
 
     }
-    private void IncrementValues(){
+    
+    private void TestValues() {
+        if (maxObjects==resourcesGathered)
+        {
+            this.IncrementValues();
+            this.ResetMap();
+            this.ShowValues();
+        }
+    }
+    private void IncrementValues()
+    {
         float infX = blockDetector.infLimitX;
         float supX = blockDetector.supLimitX;
         float infY = blockDetector.infLimitY;
@@ -136,13 +146,16 @@ public class RobotUnit : MonoBehaviour
         blockDetector.SetLimits(infX, supX, infY, supY);
         resourcesDetector.SetLimits(infX, supX, infY, supY);
     }
-    private void TestValues() {
-        if (maxObjects==resourcesGathered)
+    private void ResetMap()
+    {
+        rb.transform.position = initialPosition;
+        GameObject[] pickups = GameObject.FindGameObjectsWithTag("Pickup");
+        foreach(GameObject p in pickups)
         {
-            this.IncrementValues();
-            rb.transform.position=initialPosition;
-            this.ShowValues();
+            p.SetActive(true);
+
         }
+       
     }
     /*
      * print the values of tested limits
