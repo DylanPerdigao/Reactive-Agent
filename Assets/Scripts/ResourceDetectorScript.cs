@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class ResourceDetectorScript : MonoBehaviour
 {
-
     public float angleOfSensors = 10f;
     public float rangeOfSensors = 0.1f;
     protected Vector3 initialTransformUp;
@@ -13,11 +12,13 @@ public class ResourceDetectorScript : MonoBehaviour
     public float strength;
     public float angle;
     public int numObjects;
+    public float std, mean, infLimitX = 0.25f, supLimitX = 0.75f, infLimitY = 0.00f, supLimitY = 0.6f;
+
     public bool debug_mode;
+
     // Start is called before the first frame update
     void Start()
     {
-
         initialTransformUp = this.transform.up;
         initialTransformFwd = this.transform.forward;
     }
@@ -33,11 +34,11 @@ public class ResourceDetectorScript : MonoBehaviour
             strength = 1.0f / (anObject.distance + 1.0f);
         }
         else
-        { // no object detected
+        {
+            // no object detected
             strength = 0;
             angle = 0;
         }
-        
     }
 
     public float GetAngleToClosestResource()
@@ -48,21 +49,62 @@ public class ResourceDetectorScript : MonoBehaviour
 
     public float GetLinearOuput()
     {
-        return strength;
+        if (strength >= infLimitX && strength <= supLimitX)
+        {
+            if (strength >= supLimitY)
+            {
+                return supLimitY;
+            }
+
+            if (strength <= infLimitY)
+            {
+                return infLimitY;
+            }
+
+            return strength;
+        }
+
+        return infLimitY;
     }
 
     public virtual float GetGaussianOutput()
     {
         // YOUR CODE HERE
-        throw new NotImplementedException();
+        if (strength >= infLimitX && strength <= supLimitX)
+        {
+            if (strength >= supLimitY)
+            {
+                return supLimitY;
+            }
+
+            if (strength <= infLimitY)
+            {
+                return infLimitY;
+            }
+
+            return (float) (1 / (std * Math.Sqrt(2 * Math.PI)) * Math.Exp(-Math.Pow(strength - mean, 2) / 2 * std * std));
+        }
+
+        return infLimitY;
     }
 
     public virtual float GetLogaritmicOutput()
     {
         // YOUR CODE HERE
-        throw new NotImplementedException();
+        if (strength >= infLimitX && strength <= supLimitX)
+        {
+            if (strength >= supLimitY)
+            {
+                return supLimitY;
+            }
+            if (strength <= infLimitY)
+            {
+                return infLimitY;
+            }
+            return (float) -Math.Log(strength);
+        }
+        return infLimitY;
     }
-
 
     public ObjectInfo[] GetVisiblePickups()
     {
@@ -71,12 +113,13 @@ public class ResourceDetectorScript : MonoBehaviour
 
     public ObjectInfo GetClosestPickup()
     {
-        ObjectInfo [] a = (ObjectInfo[])GetVisibleObjects("Pickup").ToArray();
-        if(a.Length == 0)
+        ObjectInfo[] a = (ObjectInfo[]) GetVisibleObjects("Pickup").ToArray();
+        if (a.Length == 0)
         {
             return null;
         }
-        return a[a.Length-1];
+
+        return a[a.Length - 1];
     }
 
     public List<ObjectInfo> GetVisibleObjects(string objectTag)
@@ -86,15 +129,19 @@ public class ResourceDetectorScript : MonoBehaviour
 
         for (int i = 0; i * angleOfSensors < 360f; i++)
         {
-            if (Physics.Raycast(this.transform.position, Quaternion.AngleAxis(-angleOfSensors * i, initialTransformUp) * initialTransformFwd, out hit, rangeOfSensors))
+            if (Physics.Raycast(this.transform.position,
+                Quaternion.AngleAxis(-angleOfSensors * i, initialTransformUp) * initialTransformFwd, out hit,
+                rangeOfSensors))
             {
-
                 if (hit.transform.gameObject.CompareTag(objectTag))
                 {
                     if (debug_mode)
                     {
-                        Debug.DrawRay(this.transform.position, Quaternion.AngleAxis((-angleOfSensors * i), initialTransformUp) * initialTransformFwd * hit.distance, Color.blue);
+                        Debug.DrawRay(this.transform.position,
+                            Quaternion.AngleAxis((-angleOfSensors * i), initialTransformUp) * initialTransformFwd *
+                            hit.distance, Color.blue);
                     }
+
                     ObjectInfo info = new ObjectInfo(hit.distance, angleOfSensors * i + 90, hit.transform.gameObject);
                     objectsInformation.Add(info);
                 }
@@ -110,6 +157,5 @@ public class ResourceDetectorScript : MonoBehaviour
     private void LateUpdate()
     {
         this.transform.rotation = Quaternion.Euler(0.0f, 0.0f, this.transform.parent.rotation.z * -1.0f);
-
     }
 }
