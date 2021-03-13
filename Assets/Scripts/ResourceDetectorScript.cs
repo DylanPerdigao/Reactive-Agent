@@ -3,19 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ResourceDetectorScript : MonoBehaviour
+public class ResourceDetectorScript : DetectorScript
 {
-    public float angleOfSensors = 10f;
-    public float rangeOfSensors = 0.1f;
-    protected Vector3 initialTransformUp;
-    protected Vector3 initialTransformFwd;
-    public float strength;
-    public float angle;
-    public int numObjects;
-    public float std, mean, infLimitX = 0.25f, supLimitX = 0.75f, infLimitY = 0.00f, supLimitY = 0.6f;
-
-    public bool debug_mode;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -46,74 +35,14 @@ public class ResourceDetectorScript : MonoBehaviour
         return angle;
     }
 
-
-    public float GetLinearOuput()
-    {
-        if (strength >= infLimitX && strength <= supLimitX)
-        {
-            if (strength >= supLimitY)
-            {
-                return supLimitY;
-            }
-
-            if (strength <= infLimitY)
-            {
-                return infLimitY;
-            }
-
-            return strength;
-        }
-
-        return infLimitY;
-    }
-
-    public virtual float GetGaussianOutput()
-    {
-        // YOUR CODE HERE
-        if (strength >= infLimitX && strength <= supLimitX)
-        {
-            if (strength >= supLimitY)
-            {
-                return supLimitY;
-            }
-
-            if (strength <= infLimitY)
-            {
-                return infLimitY;
-            }
-
-            return (float) (1 / (std * Math.Sqrt(2 * Math.PI)) * Math.Exp(-Math.Pow(strength - mean, 2) / 2 * std * std));
-        }
-
-        return infLimitY;
-    }
-
-    public virtual float GetLogaritmicOutput()
-    {
-        // YOUR CODE HERE
-        if (strength >= infLimitX && strength <= supLimitX)
-        {
-            if (strength >= supLimitY)
-            {
-                return supLimitY;
-            }
-            if (strength <= infLimitY)
-            {
-                return infLimitY;
-            }
-            return (float) -Math.Log(strength);
-        }
-        return infLimitY;
-    }
-
     public ObjectInfo[] GetVisiblePickups()
     {
-        return (ObjectInfo[]) GetVisibleObjects("Pickup").ToArray();
+        return (ObjectInfo[])GetVisibleObjects("Pickup",Color.blue).ToArray();
     }
 
     public ObjectInfo GetClosestPickup()
     {
-        ObjectInfo[] a = (ObjectInfo[]) GetVisibleObjects("Pickup").ToArray();
+        ObjectInfo[] a = (ObjectInfo[])GetVisibleObjects("Pickup",Color.blue).ToArray();
         if (a.Length == 0)
         {
             return null;
@@ -121,38 +50,6 @@ public class ResourceDetectorScript : MonoBehaviour
 
         return a[a.Length - 1];
     }
-
-    public List<ObjectInfo> GetVisibleObjects(string objectTag)
-    {
-        RaycastHit hit;
-        List<ObjectInfo> objectsInformation = new List<ObjectInfo>();
-
-        for (int i = 0; i * angleOfSensors < 360f; i++)
-        {
-            if (Physics.Raycast(this.transform.position,
-                Quaternion.AngleAxis(-angleOfSensors * i, initialTransformUp) * initialTransformFwd, out hit,
-                rangeOfSensors))
-            {
-                if (hit.transform.gameObject.CompareTag(objectTag))
-                {
-                    if (debug_mode)
-                    {
-                        Debug.DrawRay(this.transform.position,
-                            Quaternion.AngleAxis((-angleOfSensors * i), initialTransformUp) * initialTransformFwd *
-                            hit.distance, Color.blue);
-                    }
-
-                    ObjectInfo info = new ObjectInfo(hit.distance, angleOfSensors * i + 90, hit.transform.gameObject);
-                    objectsInformation.Add(info);
-                }
-            }
-        }
-
-        objectsInformation.Sort();
-
-        return objectsInformation;
-    }
-
 
     private void LateUpdate()
     {

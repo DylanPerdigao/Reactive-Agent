@@ -1,27 +1,9 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class BlockDetectorScript : MonoBehaviour
+public class BlockDetectorScript : DetectorScript
 {
-    public float angleOfSensors = 10f;
-    public float rangeOfSensors = 10f;
-    protected Vector3 initialTransformUp;
-    protected Vector3 initialTransformFwd;
-    public float strength;
+
     public float angleToClosestObj;
-    public int numObjects;
-    public bool debugMode = true;
-
-    public float std, mean, infLimitX = 0.25f, supLimitX = 0.75f, infLimitY = 0.00f, supLimitY = 0.6f;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        initialTransformUp = this.transform.up;
-        initialTransformFwd = this.transform.forward;
-    }
 
     // Update is called once per frame
     void FixedUpdate()
@@ -42,114 +24,20 @@ public class BlockDetectorScript : MonoBehaviour
         return angleToClosestObj;
     }
 
-    public float GetLinearOuput()
-    {
-        if (strength >= infLimitX && strength <= supLimitX)
-        {
-            if (strength >= supLimitY)
-            {
-                return supLimitY;
-            }
-
-            if (strength <= infLimitY)
-            {
-                return infLimitY;
-            }
-
-            return strength;
-        }
-
-        return infLimitY;
-    }
-
-    public virtual float GetGaussianOutput()
-    {
-        // YOUR CODE HERE
-        if (strength >= infLimitX && strength <= supLimitX)
-        {
-            if (strength >= supLimitY)
-            {
-                return supLimitY;
-            }
-
-            if (strength <= infLimitY)
-            {
-                return infLimitY;
-            }
-
-            return (float) (1 / (std * Math.Sqrt(2 * Math.PI)) *
-                            Math.Exp(-Math.Pow(strength - mean, 2) / 2 * std * std));
-        }
-
-        return infLimitY;
-    }
-
-    public virtual float GetLogaritmicOutput()
-    {
-        // YOUR CODE HERE
-        if (strength >= infLimitX && strength <= supLimitX)
-        {
-            if (strength >= supLimitY)
-            {
-                return supLimitY;
-            }
-
-            if (strength <= infLimitY)
-            {
-                return infLimitY;
-            }
-
-            return (float) -Math.Log(strength);
-        }
-
-        return infLimitY;
-    }
-
+   
     public ObjectInfo[] GetVisibleWall()
     {
-        return (ObjectInfo[]) GetVisibleObjects("Wall").ToArray();
+        return (ObjectInfo[]) GetVisibleObjects("Wall",Color.red).ToArray();
     }
 
     public ObjectInfo GetClosestWall()
     {
-        ObjectInfo[] a = (ObjectInfo[]) GetVisibleObjects("Wall").ToArray();
+        ObjectInfo[] a = (ObjectInfo[]) GetVisibleObjects("Wall",Color.red).ToArray();
         if (a.Length == 0)
         {
             return null;
         }
 
         return a[a.Length - 1];
-    }
-
-    public List<ObjectInfo> GetVisibleObjects(string objectTag)
-    {
-        RaycastHit hit;
-        List<ObjectInfo> objectsInformation = new List<ObjectInfo>();
-
-        for (int i = 0; i * angleOfSensors < 360f; i++)
-        {
-            if (Physics.Raycast(this.transform.position,
-                Quaternion.AngleAxis(-angleOfSensors * i, initialTransformUp) * initialTransformFwd, out hit,
-                rangeOfSensors))
-            {
-                if (hit.transform.gameObject.CompareTag(objectTag))
-                {
-                    if (debugMode)
-                    {
-                        Debug.DrawRay(this.transform.position,
-                            Quaternion.AngleAxis((-angleOfSensors * i), initialTransformUp) * initialTransformFwd *
-                            hit.distance, Color.red);
-                    }
-
-                    ObjectInfo info = new ObjectInfo(hit.distance, angleOfSensors * i + 90, hit.transform.gameObject);
-                    info.Unpaint();
-                    objectsInformation.Add(info);
-                }
-            }
-        }
-
-        objectsInformation.Sort();
-
-        return objectsInformation;
     }
 }
