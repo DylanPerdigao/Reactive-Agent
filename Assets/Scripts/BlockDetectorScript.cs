@@ -20,7 +20,7 @@ public class BlockDetectorScript : MonoBehaviour
     void Start()
     {
         initialTransformUp = this.transform.up;
-        initialTransformFwd = this.transform.forward;
+        initialTransformFwd = this.transform.forward; ;
     }
 
     // Update is called once per frame
