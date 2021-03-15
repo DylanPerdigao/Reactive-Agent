@@ -14,7 +14,7 @@ public class BlockDetectorScript : MonoBehaviour
     public int numObjects;
     public bool debugMode = true;
 
-    public float std, mean, infLimitX = 0.25f, supLimitX = 0.75f, infLimitY = 0.00f, supLimitY = 0.6f;
+    public float std = 0.5f, mean = 0.12f, infLimitX = 0.25f, supLimitX = 0.75f, infLimitY = 0.00f, supLimitY = 0.6f;
 
     // Start is called before the first frame update
     void Start()
@@ -67,18 +67,19 @@ public class BlockDetectorScript : MonoBehaviour
         // YOUR CODE HERE
         if (strength >= infLimitX && strength <= supLimitX)
         {
-            if (strength >= supLimitY)
+            float res = (float) (1 / (std * Math.Sqrt(2 * Math.PI)) *
+                                 Math.Exp(-Math.Pow(strength - mean, 2) / 2 * std * std));
+            if (res >= supLimitY)
             {
                 return supLimitY;
             }
 
-            if (strength <= infLimitY)
+            if (res <= infLimitY)
             {
                 return infLimitY;
             }
 
-            return (float) (1 / (std * Math.Sqrt(2 * Math.PI)) *
-                            Math.Exp(-Math.Pow(strength - mean, 2) / 2 * std * std));
+            return res;
         }
 
         return infLimitY;
@@ -89,17 +90,18 @@ public class BlockDetectorScript : MonoBehaviour
         // YOUR CODE HERE
         if (strength >= infLimitX && strength <= supLimitX)
         {
-            if (strength >= supLimitY)
+            float res = (float) -Math.Log(strength);
+            if (res >= supLimitY)
             {
                 return supLimitY;
             }
 
-            if (strength <= infLimitY)
+            if (res <= infLimitY)
             {
                 return infLimitY;
             }
 
-            return (float) -Math.Log(strength);
+            return res;
         }
 
         return infLimitY;
