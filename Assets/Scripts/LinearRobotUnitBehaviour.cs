@@ -13,9 +13,6 @@ public class LinearRobotUnitBehaviour : RobotUnit
     public float wallValue;
     public float wallAngle;
 
-    public float anglep45;
-    public float anglem45;
-
     void Update()
     {
 
