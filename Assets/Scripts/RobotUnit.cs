@@ -21,19 +21,9 @@ public class RobotUnit : MonoBehaviour
     public bool debugMode = true;
     protected int maxObjects = 0;
 
-    private Vector3 initialPosition;
-    //number of logs printed
-    private int nLogs=0;
-
     // Start is called before the first frame update
     void Start()
     {
-        //set dos limites
-        blockDetector.SetLimits(0f, 1f, 0.1f, 1f);
-        resourcesDetector.SetLimits(0f, 1f, 0.1f, 1f);
-        //guardar posicao initial
-        this.SetInitialPosition();
-
         //strength = 0.0f;
         maxObjects = GameObject.FindGameObjectsWithTag("Pickup").Length;
         resourcesGathered = 0;
@@ -42,7 +32,6 @@ public class RobotUnit : MonoBehaviour
         this.startTime = Time.time;
         timeElapsed = Time.time - startTime;
         SetCountText();
-
 
 
     }
@@ -69,14 +58,15 @@ public class RobotUnit : MonoBehaviour
 
         
         listAngleStr.Clear(); // cleanup
-        this.TestValues();
-
+        
+        //Restart immediately after catching all resources
+        //if (maxObjects == resourcesGathered)
+            //SceneManager.LoadScene( SceneManager.GetActiveScene().name );
     }
 
     private void LateUpdate()
     {
         SetCountText();
-
     }
 
     void SetCountText()
@@ -116,51 +106,6 @@ public class RobotUnit : MonoBehaviour
         }
 
     }
-    private void IncrementValues(){
-        float infX = blockDetector.infLimitX;
-        float supX = blockDetector.supLimitX;
-        float infY = blockDetector.infLimitY;
-        float supY = blockDetector.infLimitY;
-        if (infX < supX)
-        {
-            infX += 0.1f;
-        }
-        else
-        {
-            infX = 0f;
-            infY += 0.1f;
-        }
-        blockDetector.SetLimits(infX, supX, infY, supY);
-        resourcesDetector.SetLimits(infX, supX, infY, supY);
-    }
-    private void TestValues() {
-        if (maxObjects==resourcesGathered)
-        {
-            this.IncrementValues();
-            rb.transform.position=initialPosition;
-            this.ShowValues();
-        }
-    }
-    /*
-     * print the values of tested limits
-     */
-    private void ShowValues() {
-        this.nLogs += 1;
-        Debug.Log(
-            "LOG #" + this.nLogs + "\n" +
-            "name\t\t\tinfX\tsupX\tinfY\tsupY\n" +
-            "========================================\n" +
-            "BlockDetector:\t\t" + blockDetector.infLimitX + "\t" + blockDetector.supLimitX + "\t" + blockDetector.infLimitY + "\t" + blockDetector.supLimitY+"\n"+
-            "ResourceDetector:\t" + resourcesDetector.infLimitX + "\t" + resourcesDetector.supLimitX + "\t" + resourcesDetector.infLimitY + "\t" + resourcesDetector.supLimitY+"\n"+
-            "========================================\n" +
-            "time elapsed:\t\t" + timeElapsed + "\n" +
-            "ressources gathered:\t" + resourcesGathered + "\n"
-        );
-    }
-    /*
-     * sets the initial position
-     */
-    private void SetInitialPosition(){
-        this.initialPosition = rb.transform.position;
-    }
+
+
 }
