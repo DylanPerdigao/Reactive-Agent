@@ -106,7 +106,6 @@ public class ResourceDetectorScript : MonoBehaviour
                 return infLimitY;
             }
 
-            print("entrei");
             return res;
         }
 
