@@ -6,24 +6,22 @@ public class LinearRobotUnitBehaviour : RobotUnit
 {
     public float weightResource;
     public float resourceValue;
-    public float resouceAngle;
 
 
     public float weightWall;
     public float wallValue;
-    public float wallAngle;
 
     void Update()
     {
 
         // get sensor data
-        resouceAngle = resourcesDetector.GetAngleToClosestResource() % 360f;
+        float resouceAngle = resourcesDetector.GetAngleToClosestResource();
 
         //resourceValue = weightResource * resourcesDetector.GetLinearOuput();
         resourceValue = weightResource * resourcesDetector.GetGaussianOutput();
 
 
-        wallAngle = blockDetector.GetAngleToClosestObstacle() % 360f;
+        float wallAngle = blockDetector.GetAngleToClosestObstacle();
 
         //wallValue = weightWall * blockDetector.GetLinearOuput();
         //wallValue = weightWall * blockDetector.GetLogaritmicOutput();
@@ -32,12 +30,6 @@ public class LinearRobotUnitBehaviour : RobotUnit
         // apply to the ball
         applyForce(resouceAngle, resourceValue); // go towards
         applyForce(wallAngle, wallValue);
-
-
-
-        
-         
-
 
 
     }
