@@ -14,7 +14,7 @@ public class BlockDetectorScript : MonoBehaviour
     public int numObjects;
     public bool debugMode = true;
 
-    public float std = 0.5f, mean = 0.12f, infLimitX = 0.25f, supLimitX = 0.75f, infLimitY = 0.05f, supLimitY = 0.6f;
+    public float std = 0.5f, mean = 0.12f, infLimitX = 0.25f, supLimitX = 0.75f, infLimitY = 0.05f, supLimitY = 1f;
 
     // Start is called before the first frame update
     void Start()
@@ -100,7 +100,6 @@ public class BlockDetectorScript : MonoBehaviour
             {
                 return infLimitY;
             }
-
             return res;
         }
 

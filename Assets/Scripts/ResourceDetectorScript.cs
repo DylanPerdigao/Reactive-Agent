@@ -12,7 +12,7 @@ public class ResourceDetectorScript : MonoBehaviour
     public float strength;
     public float angle;
     public int numObjects;
-    public float std = 0.5f, mean = 0.12f, infLimitX = 0.25f, supLimitX = 0.75f, infLimitY = 0.05f, supLimitY = 0.6f;
+    public float std = 0.5f, mean = 0.12f, infLimitX = 0.1f, supLimitX = 1f, infLimitY = 0.05f, supLimitY = 1f;
 
     public bool debug_mode;
 
@@ -106,6 +106,7 @@ public class ResourceDetectorScript : MonoBehaviour
                 return infLimitY;
             }
 
+            print("entrei");
             return res;
         }
 
