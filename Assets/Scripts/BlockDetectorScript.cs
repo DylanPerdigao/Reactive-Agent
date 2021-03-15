@@ -17,7 +17,7 @@ public class BlockDetectorScript : MonoBehaviour
     // Start is called before the first frame update
     void Start(){
         initialTransformUp = this.transform.up;
-        initialTransformFwd = this.transform.forward;
+        initialTransformFwd = this.transform.forward; ;
     }
 
     // Update is called once per frame
