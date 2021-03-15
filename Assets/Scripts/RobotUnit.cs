@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 public class RobotUnit : MonoBehaviour
 {
@@ -58,10 +57,6 @@ public class RobotUnit : MonoBehaviour
 
         
         listAngleStr.Clear(); // cleanup
-        
-        //Restart immediately after catching all resources
-        //if (maxObjects == resourcesGathered)
-            //SceneManager.LoadScene( SceneManager.GetActiveScene().name );
     }
 
     private void LateUpdate()
