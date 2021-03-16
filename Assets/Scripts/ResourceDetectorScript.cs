@@ -12,7 +12,7 @@ public class ResourceDetectorScript : MonoBehaviour
     protected float strength;
     protected float angle;
     protected int numObjects;
-    public float std = 0.5f, mean = 0.12f, infLimitX = 0.05f, supLimitX = 1f, infLimitY = 0.05f, supLimitY = 1f;
+    public float std = 0.5f, mean = 0.12f, infLimitX = 0.25f, supLimitX = 0.75f, infLimitY = 0.05f, supLimitY = 0.6f;
 
     public bool debug_mode;
 
