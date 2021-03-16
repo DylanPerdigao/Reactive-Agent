@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class BlockDetectorScript : MonoBehaviour
 {
-    protected float angleOfSensors = 10f;
-    protected float rangeOfSensors = 10f;
+    public float angleOfSensors = 10f;
+    public float rangeOfSensors = 10f;
     protected Vector3 initialTransformUp;
     protected Vector3 initialTransformFwd;
     public float strength;
