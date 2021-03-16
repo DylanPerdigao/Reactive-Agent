@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class LinearRobotUnitBehaviour : RobotUnit
 {
-    public float weightResource;
+    public float weightResource=1;
     public float resourceValue;
 
 
-    public float weightWall;
+    public float weightWall=-1;
     public float wallValue;
 
     void Update()
@@ -17,8 +17,8 @@ public class LinearRobotUnitBehaviour : RobotUnit
         // get sensor data
         float resouceAngle = resourcesDetector.GetAngleToClosestResource();
 
-        //resourceValue = weightResource * resourcesDetector.GetLinearOuput();
-        resourceValue = weightResource * resourcesDetector.GetLogaritmicOutput();
+        resourceValue = weightResource * resourcesDetector.GetLinearOuput();
+        //resourceValue = weightResource * resourcesDetector.GetLogaritmicOutput();
         //resourceValue = weightResource * resourcesDetector.GetGaussianOutput();
 
         float wallAngle = blockDetector.GetAngleToClosestObstacle();

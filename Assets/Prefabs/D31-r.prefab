@@ -113,6 +113,12 @@ MonoBehaviour:
   strength: 0
   angle: 0
   numObjects: 0
+  std: 0.5
+  mean: 0.12
+  infLimitX: 0.25
+  supLimitX: 0.75
+  infLimitY: 0.05
+  supLimitY: 0.6
   debug_mode: 1
 --- !u!1 &3965723576953268335
 GameObject:
@@ -247,14 +253,10 @@ MonoBehaviour:
   resourcesDetector: {fileID: 7314612682239532039}
   blockDetector: {fileID: 1625669444414051546}
   debugMode: 1
-  weightResource: 0.3
+  weightResource: 1
   resourceValue: 0
-  resouceAngle: 0
-  weightWall: -0.2
+  weightWall: -1
   wallValue: 0
-  wallAngle: 0
-  anglep45: 0
-  anglem45: 0
 --- !u!1 &6947973256512168921
 GameObject:
   m_ObjectHideFlags: 0
@@ -369,6 +371,12 @@ MonoBehaviour:
   angleToClosestObj: 0
   numObjects: 0
   debugMode: 1
+  std: 0.5
+  mean: 0.12
+  infLimitX: 0.25
+  supLimitX: 0.75
+  infLimitY: 0.05
+  supLimitY: 0.6
 --- !u!1 &8808777386705767494
 GameObject:
   m_ObjectHideFlags: 0
