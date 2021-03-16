@@ -5,14 +5,14 @@ using UnityEngine;
 
 public class ResourceDetectorScript : MonoBehaviour
 {
-    public float angleOfSensors = 10f;
-    public float rangeOfSensors = 0.1f;
+    protected float angleOfSensors = 10f;
+    protected float rangeOfSensors = 0.1f;
     protected Vector3 initialTransformUp;
     protected Vector3 initialTransformFwd;
-    public float strength;
-    public float angle;
-    public int numObjects;
-    public float std = 0.5f, mean = 0.12f, infLimitX = 0.1f, supLimitX = 1f, infLimitY = 0.05f, supLimitY = 1f;
+    protected float strength;
+    protected float angle;
+    protected int numObjects;
+    public float std = 0.5f, mean = 0.12f, infLimitX = 0.05f, supLimitX = 1f, infLimitY = 0.05f, supLimitY = 1f;
 
     public bool debug_mode;
 

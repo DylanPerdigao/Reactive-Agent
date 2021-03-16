@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class BlockDetectorScript : MonoBehaviour
 {
-    public float angleOfSensors = 10f;
-    public float rangeOfSensors = 10f;
+    protected float angleOfSensors = 10f;
+    protected float rangeOfSensors = 10f;
     protected Vector3 initialTransformUp;
     protected Vector3 initialTransformFwd;
     public float strength;
@@ -14,7 +14,7 @@ public class BlockDetectorScript : MonoBehaviour
     public int numObjects;
     public bool debugMode = true;
 
-    public float std = 0.5f, mean = 0.12f, infLimitX = 0.25f, supLimitX = 0.75f, infLimitY = 0.05f, supLimitY = 1f;
+    public float std = 0.5f, mean = 0.12f, infLimitX = 0.05f, supLimitX = 1f, infLimitY = 0.05f, supLimitY = 1f;
 
     // Start is called before the first frame update
     void Start()

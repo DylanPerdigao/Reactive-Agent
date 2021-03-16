@@ -18,8 +18,8 @@ public class LinearRobotUnitBehaviour : RobotUnit
         float resouceAngle = resourcesDetector.GetAngleToClosestResource();
 
         //resourceValue = weightResource * resourcesDetector.GetLinearOuput();
-        resourceValue = weightResource * resourcesDetector.GetLogaritmicOutput();
-        //resourceValue = weightResource * resourcesDetector.GetGaussianOutput();
+        //resourceValue = weightResource * resourcesDetector.GetLogaritmicOutput();
+        resourceValue = weightResource * resourcesDetector.GetGaussianOutput();
 
         float wallAngle = blockDetector.GetAngleToClosestObstacle();
 
