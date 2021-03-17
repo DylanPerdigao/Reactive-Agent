@@ -46,6 +46,101 @@ public class ResourceDetectorScript : MonoBehaviour
         return angle;
     }
 
+    public float NonLimitsLinear()
+    {
+        return strength;
+    }
+
+    public float NonLimitsLog()
+    {
+        return (float) -Math.Log(strength);
+    }
+
+    public float NonLimitsGauss()
+    {
+        return (float) (1 / (std * Math.Sqrt(2 * Math.PI)) * Math.Exp(-Math.Pow(strength - mean, 2) / 2 * std * std));
+    }
+
+    public float XLimitLinear()
+    {
+        if (strength >= infLimitX && strength <= supLimitX)
+        {
+            return strength;
+        }
+
+        return 0;
+    }
+
+    public float XLimitLog()
+    {
+        float res = (float) -Math.Log(strength);
+        if (strength >= infLimitX && strength <= supLimitX)
+        {
+            return res;
+        }
+
+        return 0;
+    }
+
+    public float XLimitGauss()
+    {
+        float res = (float) (1 / (std * Math.Sqrt(2 * Math.PI)) *
+                             Math.Exp(-Math.Pow(strength - mean, 2) / 2 * std * std));
+        if (strength >= infLimitX && strength <= supLimitX)
+        {
+            return res;
+        }
+
+        return 0;
+    }
+
+    public float YLimitLinear()
+    {
+        if (strength >= supLimitY)
+        {
+            return supLimitY;
+        }
+
+        if (strength <= infLimitY)
+        {
+            return infLimitY;
+        }
+
+        return strength;
+    }
+
+    public float YLimitLog()
+    {
+        float res = (float) -Math.Log(strength);
+        if (strength >= supLimitY)
+        {
+            return supLimitY;
+        }
+
+        if (strength <= infLimitY)
+        {
+            return infLimitY;
+        }
+
+        return res;
+    }
+
+    public float YLimitGauss()
+    {
+        float res = (float) (1 / (std * Math.Sqrt(2 * Math.PI)) *
+                             Math.Exp(-Math.Pow(strength - mean, 2) / 2 * std * std));
+        if (strength >= supLimitY)
+        {
+            return supLimitY;
+        }
+
+        if (strength <= infLimitY)
+        {
+            return infLimitY;
+        }
+
+        return res;
+    }
 
     public float GetLinearOuput()
     {
@@ -72,7 +167,8 @@ public class ResourceDetectorScript : MonoBehaviour
         // YOUR CODE HERE
         if (strength >= infLimitX && strength <= supLimitX)
         {
-            float res = (float) (1 / (std * Math.Sqrt(2 * Math.PI)) * Math.Exp(-Math.Pow(strength - mean, 2) / 2 * std * std));
+            float res = (float) (1 / (std * Math.Sqrt(2 * Math.PI)) *
+                                 Math.Exp(-Math.Pow(strength - mean, 2) / 2 * std * std));
             if (res >= supLimitY)
             {
                 return supLimitY;
