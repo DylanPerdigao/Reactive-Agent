@@ -11,7 +11,7 @@ public class CameraController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Application.targetFrameRate = 120;
+        Application.targetFrameRate = 60;
         offset = transform.position - player.transform.position;
     }
 
@@ -20,6 +20,6 @@ public class CameraController : MonoBehaviour
     {
         transform.position = player.transform.position + offset;
         
-        //Debug.Log(1.0f / Time.deltaTime);
+        Debug.Log(1.0f / Time.deltaTime);
     }
 }
