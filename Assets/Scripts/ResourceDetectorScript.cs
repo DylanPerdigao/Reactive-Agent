@@ -168,7 +168,7 @@ public class ResourceDetectorScript : MonoBehaviour
         if (strength >= infLimitX && strength <= supLimitX)
         {
             float res = (float) (1 / (std * Math.Sqrt(2 * Math.PI)) *
-                                 Math.Exp(-Math.Pow(strength - mean, 2) / 2 * std * std));
+                                 Math.Exp(-Math.Pow(strength - mean, 2) / (2 * std * std)));
             if (res >= supLimitY)
             {
                 return supLimitY;
