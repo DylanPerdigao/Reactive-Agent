@@ -17,15 +17,17 @@ public class LinearRobotUnitBehaviour : RobotUnit
         // get sensor data
         float resouceAngle = resourcesDetector.GetAngleToClosestResource();
 
-        resourceValue = weightResource * resourcesDetector.GetLinearOuput();
+        //resourceValue = weightResource * resourcesDetector.GetLinearOuput();
         //resourceValue = weightResource * resourcesDetector.GetLogaritmicOutput();
         //resourceValue = weightResource * resourcesDetector.GetGaussianOutput();
+        resourceValue = weightResource * resourcesDetector.NonLimitsGauss();
 
         float wallAngle = blockDetector.GetAngleToClosestObstacle();
 
-        wallValue = weightWall * blockDetector.GetLinearOuput();
+        //wallValue = weightWall * blockDetector.GetLinearOuput();
         //wallValue = weightWall * blockDetector.GetLogaritmicOutput();
         //wallValue = weightWall * blockDetector.GetGaussianOutput();
+        wallValue = weightWall * blockDetector.NonLimitsGauss();
 
         // apply to the ball
         applyForce(resouceAngle, resourceValue); // go towards

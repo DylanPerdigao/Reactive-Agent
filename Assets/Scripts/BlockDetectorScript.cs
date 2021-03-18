@@ -14,7 +14,7 @@ public class BlockDetectorScript : MonoBehaviour
     protected int numObjects;
     public bool debugMode = true;
 
-    public float std = 0.5f, mean = 0.12f, infLimitX = 0.25f, supLimitX = 0.75f, infLimitY = 0.05f, supLimitY = 0.6f;
+    public float std = 0.12f, mean = 0.5f, infLimitX = 0.25f, supLimitX = 0.75f, infLimitY = 0.05f, supLimitY = 0.6f;
 
     // Start is called before the first frame update
     void Start()
@@ -55,7 +55,7 @@ public class BlockDetectorScript : MonoBehaviour
 
     public float NonLimitsGauss()
     {
-        return (float) (1 / (std * Math.Sqrt(2 * Math.PI)) * Math.Exp(-Math.Pow(strength - mean, 2) / 2 * std * std));
+        return (float) (1 / (std * Math.Sqrt(2 * Math.PI)) * Math.Exp(-Math.Pow(strength - mean, 2) / (2 * std * std)));
     }
 
     public float XLimitLinear()
@@ -82,7 +82,7 @@ public class BlockDetectorScript : MonoBehaviour
     public float XLimitGauss()
     {
         float res = (float) (1 / (std * Math.Sqrt(2 * Math.PI)) *
-                             Math.Exp(-Math.Pow(strength - mean, 2) / 2 * std * std));
+                             Math.Exp(-Math.Pow(strength - mean, 2) / (2 * std * std)));
         if (strength >= infLimitX && strength <= supLimitX)
         {
             return res;
@@ -125,7 +125,7 @@ public class BlockDetectorScript : MonoBehaviour
     public float YLimitGauss()
     {
         float res = (float) (1 / (std * Math.Sqrt(2 * Math.PI)) *
-                             Math.Exp(-Math.Pow(strength - mean, 2) / 2 * std * std));
+                             Math.Exp(-Math.Pow(strength - mean, 2) / (2 * std * std)));
         if (strength >= supLimitY)
         {
             return supLimitY;
@@ -165,7 +165,7 @@ public class BlockDetectorScript : MonoBehaviour
         if (strength >= infLimitX && strength <= supLimitX)
         {
             float res = (float) (1 / (std * Math.Sqrt(2 * Math.PI)) *
-                                 Math.Exp(-Math.Pow(strength - mean, 2) / 2 * std * std));
+                                 Math.Exp(-Math.Pow(strength - mean, 2) / (2 * std * std)));
             if (res >= supLimitY)
             {
                 return supLimitY;
