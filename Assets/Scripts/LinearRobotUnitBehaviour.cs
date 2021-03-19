@@ -6,8 +6,8 @@
 
 public class LinearRobotUnitBehaviour : RobotUnit
 {
-    public enum Function{Linear,Logarithmic,Gaussian};
-    public enum Limits{ AllLimits, XLimits,YLimits , NoLimits };
+    public enum Function{ Gaussian, Logarithmic, Linear };
+    public enum Limits{ AllLimits, YLimits, XLimits, NoLimits };
 
     public Function wallFunction;
     public Limits wallLimits;
