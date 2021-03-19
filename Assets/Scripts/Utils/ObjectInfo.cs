@@ -1,5 +1,11 @@
-﻿using System;
+﻿/**
+ * Ana Rita Rodrigues - 2018284515
+ * Bruno Faria - 2018295474
+ * Dylan Perdigão - 2018233092	
+ */
+using System;
 using UnityEngine;
+
 public class ObjectInfo : IEquatable<ObjectInfo>, IComparable<ObjectInfo>
 {
     public float distance {get;}

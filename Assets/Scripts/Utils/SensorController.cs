@@ -1,5 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿/**
+ * Ana Rita Rodrigues - 2018284515
+ * Bruno Faria - 2018295474
+ * Dylan Perdigão - 2018233092	
+ */
 using UnityEngine;
 
 public class SensorController : MonoBehaviour

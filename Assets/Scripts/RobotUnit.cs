@@ -1,9 +1,12 @@
-﻿using System;
-using System.Collections;
+﻿/**
+ * Ana Rita Rodrigues - 2018284515
+ * Bruno Faria - 2018295474
+ * Dylan Perdigão - 2018233092	
+ */
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 public class RobotUnit : MonoBehaviour
 {
@@ -64,12 +67,16 @@ public class RobotUnit : MonoBehaviour
         //if (maxObjects == resourcesGathered)
             //SceneManager.LoadScene( SceneManager.GetActiveScene().name );
     }
-
+    /**
+     * Atualiza o texto com o tempo passado e os recursos apanhados
+     */
     private void LateUpdate()
     {
         SetCountText();
     }
-
+    /**
+     * Gera texto com o tempo passado e os recursos apanhados
+     */
     void SetCountText()
     {
         if(resourcesGathered < maxObjects)
@@ -81,14 +88,17 @@ public class RobotUnit : MonoBehaviour
         string seconds = (timeElapsed % 60).ToString("f0");
         countText.text = "Resources Gathered: " + resourcesGathered.ToString() + "/" + maxObjects + "\nTime Elapsed: " + minutes + ":" + seconds; //start
     }
-
+    /**
+     * Gera tuplos com as forcas e os angulos dos obstaculos e recursos
+     */
     public void applyForce(float angle, float strength)
     {
         listAngleStr.Add(new Tuple<float, float>(angle, strength));
         
     }
-
-
+    /**
+     * Desativa os recursos apanhados
+     */
     private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.CompareTag("Pickup"))
@@ -107,6 +117,4 @@ public class RobotUnit : MonoBehaviour
         }
 
     }
-
-
 }

@@ -1,5 +1,9 @@
-﻿using System;
-using System.Collections;
+﻿/**
+ * Ana Rita Rodrigues - 2018284515
+ * Bruno Faria - 2018295474
+ * Dylan Perdigão - 2018233092	
+ */
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -21,13 +25,14 @@ public class BlockDetectorScript : MonoBehaviour
     {
         initialTransformUp = this.transform.up;
         initialTransformFwd = this.transform.forward;
-        ;
     }
 
-    // Update is called once per frame
+    /**
+     * A cada update, pinta o obstaculo mais próximo,
+     * calcula o angulo e a força
+     */
     void FixedUpdate()
     {
-        // YOUR CODE HERE
         ObjectInfo anObject;
         anObject = GetClosestWall();
         if (anObject != null)
@@ -37,27 +42,37 @@ public class BlockDetectorScript : MonoBehaviour
             strength = 1.0f / (anObject.distance + 1.0f);
         }
     }
-
+    /**
+     * Devolve o angulo do obstaculo mais proximo
+     */
     public float GetAngleToClosestObstacle()
     {
         return angleToClosestObj;
     }
-
+    /**
+     * Devolve a forca linear, sem limites
+     */
     public float NonLimitsLinear()
     {
         return strength;
     }
-
+    /**
+     * Devolve a forca logaritmica, sem limites
+     */
     public float NonLimitsLog()
     {
         return (float) -Math.Log(strength);
     }
-
+    /**
+     * Devolve a forca gaussiana, sem limites
+     */
     public float NonLimitsGauss()
     {
         return (float) (1 / (std * Math.Sqrt(2 * Math.PI)) * Math.Exp(-Math.Pow(strength - mean, 2) / (2 * std * std)));
     }
-
+    /**
+     * Devolve a forca linear, com limite à esquerda e à direita
+     */
     public float XLimitLinear()
     {
         if (strength >= infLimitX && strength <= supLimitX)
@@ -67,7 +82,9 @@ public class BlockDetectorScript : MonoBehaviour
 
         return 0;
     }
-
+    /**
+     * Devolve a forca logaritmica, com limite à esquerda e à direita
+     */
     public float XLimitLog()
     {
         float res = (float) -Math.Log(strength);
@@ -78,7 +95,9 @@ public class BlockDetectorScript : MonoBehaviour
 
         return 0;
     }
-
+    /**
+     * Devolve a forca gaussiana, com limite à esquerda e à direita
+     */
     public float XLimitGauss()
     {
         float res = (float) (1 / (std * Math.Sqrt(2 * Math.PI)) *
@@ -90,7 +109,9 @@ public class BlockDetectorScript : MonoBehaviour
 
         return 0;
     }
-
+    /**
+     * Devolve a forca liniear, com limite inferior e superior
+     */
     public float YLimitLinear()
     {
         if (strength >= supLimitY)
@@ -105,7 +126,9 @@ public class BlockDetectorScript : MonoBehaviour
 
         return strength;
     }
-
+    /**
+     * Devolve a forca logarimica, com limite inferior e superior
+     */
     public float YLimitLog()
     {
         float res = (float) -Math.Log(strength);
@@ -121,7 +144,9 @@ public class BlockDetectorScript : MonoBehaviour
 
         return res;
     }
-
+    /**
+     * Devolve a forca gaussiana, com limite inferior e superior
+     */
     public float YLimitGauss()
     {
         float res = (float) (1 / (std * Math.Sqrt(2 * Math.PI)) *
@@ -138,7 +163,10 @@ public class BlockDetectorScript : MonoBehaviour
 
         return res;
     }
-
+    /**
+     * Devolve a forca linear, com limite inferior e superior
+     * e com limite à esquerda e à direita
+     */
     public float GetLinearOuput()
     {
         if (strength >= infLimitX && strength <= supLimitX)
@@ -158,10 +186,36 @@ public class BlockDetectorScript : MonoBehaviour
 
         return infLimitY;
     }
+    /**
+     * Devolve a forca logaritmica, com limite inferior e superior
+     * e com limite à esquerda e à direita
+     */
+    public virtual float GetLogaritmicOutput()
+    {
+        if (strength >= infLimitX && strength <= supLimitX)
+        {
+            float res = (float)-Math.Log(strength);
+            if (res >= supLimitY)
+            {
+                return supLimitY;
+            }
 
+            if (res <= infLimitY)
+            {
+                return infLimitY;
+            }
+
+            return res;
+        }
+
+        return infLimitY;
+    }
+    /**
+     * Devolve a forca gaussiana, com limite inferior e superior
+     * e com limite à esquerda e à direita
+     */
     public virtual float GetGaussianOutput()
     {
-        // YOUR CODE HERE
         if (strength >= infLimitX && strength <= supLimitX)
         {
             float res = (float) (1 / (std * Math.Sqrt(2 * Math.PI)) *
@@ -181,34 +235,16 @@ public class BlockDetectorScript : MonoBehaviour
 
         return infLimitY;
     }
-
-    public virtual float GetLogaritmicOutput()
-    {
-        // YOUR CODE HERE
-        if (strength >= infLimitX && strength <= supLimitX)
-        {
-            float res = (float) -Math.Log(strength);
-            if (res >= supLimitY)
-            {
-                return supLimitY;
-            }
-
-            if (res <= infLimitY)
-            {
-                return infLimitY;
-            }
-
-            return res;
-        }
-
-        return infLimitY;
-    }
-
+    /**
+     * Devolve um array com os obstaculos visiveis pelo agente
+     */
     public ObjectInfo[] GetVisibleWall()
     {
         return (ObjectInfo[]) GetVisibleObjects("Wall").ToArray();
     }
-
+    /**
+     * Devolve o obstaculo visivel pelo agente mais proximo
+     */
     public ObjectInfo GetClosestWall()
     {
         ObjectInfo[] a = (ObjectInfo[]) GetVisibleObjects("Wall").ToArray();
@@ -219,7 +255,10 @@ public class BlockDetectorScript : MonoBehaviour
 
         return a[a.Length - 1];
     }
-
+    /**
+     * Devolve uma lista com informacoes sobre os obstaculos mais proximos
+     * Em debugMode, envia raios contra o obstaculos visiveis
+     */
     public List<ObjectInfo> GetVisibleObjects(string objectTag)
     {
         RaycastHit hit;

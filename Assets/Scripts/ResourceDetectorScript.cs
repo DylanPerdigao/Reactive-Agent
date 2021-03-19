@@ -1,5 +1,9 @@
-﻿using System;
-using System.Collections;
+﻿/**
+ * Ana Rita Rodrigues - 2018284515
+ * Bruno Faria - 2018295474
+ * Dylan Perdigão - 2018233092	
+ */
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -23,7 +27,9 @@ public class ResourceDetectorScript : MonoBehaviour
         initialTransformFwd = this.transform.forward;
     }
 
-    // FixedUpdate is called at fixed intervals of time
+    /**
+     * A cada update, calcula o angulo e a força
+     */
     void FixedUpdate()
     {
         ObjectInfo anObject;
@@ -40,27 +46,37 @@ public class ResourceDetectorScript : MonoBehaviour
             angle = 0;
         }
     }
-
+    /**
+     * Devolve o angulo do obstaculo mais proximo
+     */
     public float GetAngleToClosestResource()
     {
         return angle;
     }
-
+    /**
+     * Devolve a forca linear, sem limites
+     */
     public float NonLimitsLinear()
     {
         return strength;
     }
-
+    /**
+     * Devolve a forca logaritmica, sem limites
+     */
     public float NonLimitsLog()
     {
         return (float) -Math.Log(strength);
     }
-
+    /**
+     * Devolve a forca gaussiana, sem limites
+     */
     public float NonLimitsGauss()
     {
         return (float) (1 / (std * Math.Sqrt(2 * Math.PI)) * Math.Exp(-Math.Pow(strength - mean, 2) / (2 * std * std)));
     }
-
+    /**
+     * Devolve a forca linear, com limite à esquerda e à direita
+     */
     public float XLimitLinear()
     {
         if (strength >= infLimitX && strength <= supLimitX)
@@ -70,7 +86,9 @@ public class ResourceDetectorScript : MonoBehaviour
 
         return 0;
     }
-
+    /**
+     * Devolve a forca logaritmica, com limite à esquerda e à direita
+     */
     public float XLimitLog()
     {
         float res = (float) -Math.Log(strength);
@@ -81,7 +99,9 @@ public class ResourceDetectorScript : MonoBehaviour
 
         return 0;
     }
-
+    /**
+     * Devolve a forca gaussiana, com limite à esquerda e à direita
+     */
     public float XLimitGauss()
     {
         float res = (float) (1 / (std * Math.Sqrt(2 * Math.PI)) *
@@ -93,7 +113,9 @@ public class ResourceDetectorScript : MonoBehaviour
 
         return 0;
     }
-
+    /**
+     * Devolve a forca liniear, com limite inferior e superior
+     */
     public float YLimitLinear()
     {
         if (strength >= supLimitY)
@@ -108,7 +130,9 @@ public class ResourceDetectorScript : MonoBehaviour
 
         return strength;
     }
-
+    /**
+     * Devolve a forca logarimica, com limite inferior e superior
+     */
     public float YLimitLog()
     {
         float res = (float) -Math.Log(strength);
@@ -124,7 +148,9 @@ public class ResourceDetectorScript : MonoBehaviour
 
         return res;
     }
-
+    /**
+     * Devolve a forca gaussiana, com limite inferior e superior
+     */
     public float YLimitGauss()
     {
         float res = (float) (1 / (std * Math.Sqrt(2 * Math.PI)) *
@@ -141,7 +167,10 @@ public class ResourceDetectorScript : MonoBehaviour
 
         return res;
     }
-
+    /**
+     * Devolve a forca linear, com limite inferior e superior
+     * e com limite à esquerda e à direita
+     */
     public float GetLinearOuput()
     {
         if (strength >= infLimitX && strength <= supLimitX)
@@ -161,10 +190,36 @@ public class ResourceDetectorScript : MonoBehaviour
 
         return infLimitY;
     }
+    /**
+     * Devolve a forca logaritmica, com limite inferior e superior
+     * e com limite à esquerda e à direita
+     */
+    public virtual float GetLogaritmicOutput()
+    {
+        if (strength >= infLimitX && strength <= supLimitX)
+        {
+            float res = (float)-Math.Log(strength);
+            if (res >= supLimitY)
+            {
+                return supLimitY;
+            }
 
+            if (res <= infLimitY)
+            {
+                return infLimitY;
+            }
+
+            return res;
+        }
+
+        return infLimitY;
+    }
+    /**
+     * Devolve a forca gaussiana, com limite inferior e superior
+     * e com limite à esquerda e à direita
+     */
     public virtual float GetGaussianOutput()
     {
-        // YOUR CODE HERE
         if (strength >= infLimitX && strength <= supLimitX)
         {
             float res = (float) (1 / (std * Math.Sqrt(2 * Math.PI)) *
@@ -184,34 +239,16 @@ public class ResourceDetectorScript : MonoBehaviour
 
         return infLimitY;
     }
-
-    public virtual float GetLogaritmicOutput()
-    {
-        // YOUR CODE HERE
-        if (strength >= infLimitX && strength <= supLimitX)
-        {
-            float res = (float) -Math.Log(strength);
-            if (res >= supLimitY)
-            {
-                return supLimitY;
-            }
-
-            if (res <= infLimitY)
-            {
-                return infLimitY;
-            }
-
-            return res;
-        }
-
-        return infLimitY;
-    }
-
+    /**
+     * Devolve um array com os recursos visiveis pelo agente
+     */
     public ObjectInfo[] GetVisiblePickups()
     {
         return (ObjectInfo[]) GetVisibleObjects("Pickup").ToArray();
     }
-
+    /**
+     * Devolve o recurso visivel pelo agente mais proximo
+     */
     public ObjectInfo GetClosestPickup()
     {
         ObjectInfo[] a = (ObjectInfo[]) GetVisibleObjects("Pickup").ToArray();
@@ -222,7 +259,10 @@ public class ResourceDetectorScript : MonoBehaviour
 
         return a[a.Length - 1];
     }
-
+    /**
+     * Devolve uma lista com informacoes sobre os recursos mais proximos
+     * Em debugMode, envia raios azuis contra os recursos visiveis
+     */
     public List<ObjectInfo> GetVisibleObjects(string objectTag)
     {
         RaycastHit hit;

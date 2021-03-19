@@ -1,9 +1,16 @@
-﻿using System;
-using System.Collections;
-using UnityEngine;
+﻿/**
+ * Ana Rita Rodrigues - 2018284515
+ * Bruno Faria - 2018295474
+ * Dylan Perdigão - 2018233092	
+ */
 
 public class LinearRobotUnitBehaviour : RobotUnit
 {
+    public enum Function{Linear,Logarithmic,Gaussian};
+
+    public Function wallFunction;
+    public Function resourceFunction;
+
     public float weightResource=1;
     public float resourceValue;
 
@@ -11,32 +18,43 @@ public class LinearRobotUnitBehaviour : RobotUnit
     public float weightWall=-1;
     public float wallValue;
 
+    /**
+     * A cada frame, aplica força com a funcao especificada no Unity e o angulo calculado
+     * para as resources e os obstaculos
+     */
     void Update()
     {
-
-        // get sensor data
         float resouceAngle = resourcesDetector.GetAngleToClosestResource();
-
-        //resourceValue = weightResource * resourcesDetector.GetLinearOuput();
-        //resourceValue = weightResource * resourcesDetector.GetLogaritmicOutput();
-        //resourceValue = weightResource * resourcesDetector.GetGaussianOutput();
-        resourceValue = weightResource * resourcesDetector.NonLimitsGauss();
-
         float wallAngle = blockDetector.GetAngleToClosestObstacle();
 
-        //wallValue = weightWall * blockDetector.GetLinearOuput();
-        //wallValue = weightWall * blockDetector.GetLogaritmicOutput();
-        //wallValue = weightWall * blockDetector.GetGaussianOutput();
-        wallValue = weightWall * blockDetector.NonLimitsGauss();
+        switch (resourceFunction)
+        {
+            case Function.Linear:
+                resourceValue = weightResource * resourcesDetector.GetLinearOuput();
+                break;
+            case Function.Logarithmic:
+                resourceValue = weightResource * resourcesDetector.GetLogaritmicOutput();
+                break;
+            case Function.Gaussian:
+                resourceValue = weightResource * resourcesDetector.GetGaussianOutput();
+                break;
+        }
+        switch (wallFunction)
+        {
+            case Function.Linear:
+                wallValue = weightWall * blockDetector.GetLinearOuput();
+                break;
+            case Function.Logarithmic:
+                wallValue = weightWall * blockDetector.GetLogaritmicOutput();
+                break;
+            case Function.Gaussian:
+                wallValue = weightWall * blockDetector.GetGaussianOutput();
+                break;
+        }
 
-        // apply to the ball
-        applyForce(resouceAngle, resourceValue); // go towards
+        applyForce(resouceAngle, resourceValue);
         applyForce(wallAngle, wallValue);
-
-
     }
-
-
 }
 
 
