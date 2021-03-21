@@ -59,13 +59,7 @@ public class RobotUnit : MonoBehaviour
 
             i++;
         }
-
-        
         listAngleStr.Clear(); // cleanup
-        
-        //Restart immediately after catching all resources
-        //if (maxObjects == resourcesGathered)
-            //SceneManager.LoadScene( SceneManager.GetActiveScene().name );
     }
     /**
      * Atualiza o texto com o tempo passado e os recursos apanhados

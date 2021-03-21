@@ -37,6 +37,7 @@ public class BlockDetectorScript : MonoBehaviour
         anObject = GetClosestWall();
         if (anObject != null)
         {
+            //Pinta o obstaculo mais proximo
             anObject.Paint();
             angleToClosestObj = anObject.angle;
             strength = 1.0f / (anObject.distance + 1.0f);
@@ -50,28 +51,28 @@ public class BlockDetectorScript : MonoBehaviour
         return angleToClosestObj;
     }
     /**
-     * Devolve a forca linear, sem limites
+     * Devolve a forca linear, sem limites nem limiares
      */
     public float NonLimitsLinear()
     {
         return strength;
     }
     /**
-     * Devolve a forca logaritmica, sem limites
+     * Devolve a forca logaritmica, sem limites nem limiares
      */
     public float NonLimitsLog()
     {
         return (float) -Math.Log(strength);
     }
     /**
-     * Devolve a forca gaussiana, sem limites
+     * Devolve a forca gaussiana, sem limites nem limiares
      */
     public float NonLimitsGauss()
     {
         return (float) (1 / (std * Math.Sqrt(2 * Math.PI)) * Math.Exp(-Math.Pow(strength - mean, 2) / (2 * std * std)));
     }
     /**
-     * Devolve a forca linear, com limite à esquerda e à direita
+     * Devolve a forca linear, com limiares
      */
     public float XLimitLinear()
     {
@@ -83,7 +84,7 @@ public class BlockDetectorScript : MonoBehaviour
         return 0;
     }
     /**
-     * Devolve a forca logaritmica, com limite à esquerda e à direita
+     * Devolve a forca logaritmica, com limiares
      */
     public float XLimitLog()
     {
@@ -96,7 +97,7 @@ public class BlockDetectorScript : MonoBehaviour
         return 0;
     }
     /**
-     * Devolve a forca gaussiana, com limite à esquerda e à direita
+     * Devolve a forca gaussiana, com limiares
      */
     public float XLimitGauss()
     {
@@ -110,7 +111,7 @@ public class BlockDetectorScript : MonoBehaviour
         return 0;
     }
     /**
-     * Devolve a forca liniear, com limite inferior e superior
+     * Devolve a forca linear, com limites
      */
     public float YLimitLinear()
     {
@@ -127,7 +128,7 @@ public class BlockDetectorScript : MonoBehaviour
         return strength;
     }
     /**
-     * Devolve a forca logarimica, com limite inferior e superior
+     * Devolve a forca logarimica, com limites
      */
     public float YLimitLog()
     {
@@ -145,7 +146,7 @@ public class BlockDetectorScript : MonoBehaviour
         return res;
     }
     /**
-     * Devolve a forca gaussiana, com limite inferior e superior
+     * Devolve a forca gaussiana, com limites
      */
     public float YLimitGauss()
     {
@@ -164,8 +165,7 @@ public class BlockDetectorScript : MonoBehaviour
         return res;
     }
     /**
-     * Devolve a forca linear, com limite inferior e superior
-     * e com limite à esquerda e à direita
+     * Devolve a forca linear, com limites e limiares
      */
     public float GetLinearOuput()
     {
@@ -187,8 +187,7 @@ public class BlockDetectorScript : MonoBehaviour
         return infLimitY;
     }
     /**
-     * Devolve a forca logaritmica, com limite inferior e superior
-     * e com limite à esquerda e à direita
+     * Devolve a forca logaritmica, com limites e limiares
      */
     public virtual float GetLogaritmicOutput()
     {
@@ -211,8 +210,7 @@ public class BlockDetectorScript : MonoBehaviour
         return infLimitY;
     }
     /**
-     * Devolve a forca gaussiana, com limite inferior e superior
-     * e com limite à esquerda e à direita
+     * Devolve a forca gaussiana, com limites e limiares
      */
     public virtual float GetGaussianOutput()
     {
@@ -278,8 +276,9 @@ public class BlockDetectorScript : MonoBehaviour
                             Quaternion.AngleAxis((-angleOfSensors * i), initialTransformUp) * initialTransformFwd *
                             hit.distance, Color.red);
                     }
-
+           
                     ObjectInfo info = new ObjectInfo(hit.distance, angleOfSensors * i + 90, hit.transform.gameObject);
+                    //Chama a funcao para recolorir o objeto com sua cor original
                     info.Unpaint();
                     objectsInformation.Add(info);
                 }

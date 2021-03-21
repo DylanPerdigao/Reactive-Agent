@@ -36,7 +36,7 @@ public class LinearRobotUnitBehaviour : RobotUnit
         {
             case Function.Linear:
                 //
-                // ESCOLHE OS LIMITES PARA A FUNCAO LINEAR (PARA OS RECURSOS)
+                // ESCOLHE OS LIMITES/LIMIARES PARA A FUNCAO LINEAR (PARA OS RECURSOS)
                 //
                 switch (resourceLimits)
                 {
@@ -56,7 +56,7 @@ public class LinearRobotUnitBehaviour : RobotUnit
                 break;
             case Function.Logarithmic:
                 //
-                // ESCOLHE OS LIMITES PARA A FUNCAO LOGARITMICA (PARA OS RECURSOS)
+                // ESCOLHE OS LIMITES/LIMIARES PARA A FUNCAO LOGARITMICA (PARA OS RECURSOS)
                 //
                 switch (resourceLimits)
                 {
@@ -76,13 +76,12 @@ public class LinearRobotUnitBehaviour : RobotUnit
                 break;
             case Function.Gaussian:
                 //
-                // ESCOLHE OS LIMITES PARA A FUNCAO GAUSSIANA (PARA OS RECURSOS)
+                // ESCOLHE OS LIMITES/LIMIARES PARA A FUNCAO GAUSSIANA (PARA OS RECURSOS)
                 //
                 switch (resourceLimits)
                 {
                     case Limits.NoLimits:
                         resourceValue = weightResource * resourcesDetector.NonLimitsGauss();
-                        print("aquiiiii res\n");
                         break;
                     case Limits.XLimits:
                         resourceValue = weightResource * resourcesDetector.XLimitGauss();
@@ -103,7 +102,7 @@ public class LinearRobotUnitBehaviour : RobotUnit
         {
             case Function.Linear:
                 //
-                // ESCOLHE OS LIMITES PARA A FUNCAO LINEAR (PARA OS OBSTACULOS)
+                // ESCOLHE OS LIMITES/LIMIARES PARA A FUNCAO LINEAR (PARA OS OBSTACULOS)
                 //
                 switch (wallLimits)
                 {
@@ -123,7 +122,7 @@ public class LinearRobotUnitBehaviour : RobotUnit
                 break;
             case Function.Logarithmic:
                 //
-                // ESCOLHE OS LIMITES PARA A FUNCAO LOGARITMICA (PARA OS OBSTACULOS)
+                // ESCOLHE OS LIMITES/LIMIARES PARA A FUNCAO LOGARITMICA (PARA OS OBSTACULOS)
                 //
                 switch (wallLimits)
                 {
@@ -143,13 +142,12 @@ public class LinearRobotUnitBehaviour : RobotUnit
                 break;
             case Function.Gaussian:
                 //
-                // ESCOLHE OS LIMITES PARA A FUNCAO GAUSSIANA (PARA OS OBSTACULOS)
+                // ESCOLHE OS LIMITES/LIMIARES PARA A FUNCAO GAUSSIANA (PARA OS OBSTACULOS)
                 //
                 switch (wallLimits)
                 {
                     case Limits.NoLimits:
                         wallValue = weightWall * blockDetector.NonLimitsGauss();
-                        print("aquiiiii wall\n");
                         break;
                     case Limits.XLimits:
                         wallValue = weightWall * blockDetector.XLimitGauss();

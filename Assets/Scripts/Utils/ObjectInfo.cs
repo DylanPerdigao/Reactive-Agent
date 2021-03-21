@@ -37,12 +37,16 @@ public class ObjectInfo : IEquatable<ObjectInfo>, IComparable<ObjectInfo>
         return -1;
     }
 
-
+    /**
+     * Pinta o objeto de vermelho
+     */
     public void Paint()
     {
         obj.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
     }
-
+    /**
+     * Recolora o objeto com sua cor original
+     */
     public void Unpaint()
     {
         obj.GetComponent<Renderer>().material.SetColor("_Color", Color.white);

@@ -54,28 +54,28 @@ public class ResourceDetectorScript : MonoBehaviour
         return angle;
     }
     /**
-     * Devolve a forca linear, sem limites
+     * Devolve a forca linear, sem limites nem limiares
      */
     public float NonLimitsLinear()
     {
         return strength;
     }
     /**
-     * Devolve a forca logaritmica, sem limites
+     * Devolve a forca logaritmica, sem limites nem limiares
      */
     public float NonLimitsLog()
     {
         return (float) -Math.Log(strength);
     }
     /**
-     * Devolve a forca gaussiana, sem limites
+     * Devolve a forca gaussiana, sem limites nem limiares
      */
     public float NonLimitsGauss()
     {
         return (float) (1 / (std * Math.Sqrt(2 * Math.PI)) * Math.Exp(-Math.Pow(strength - mean, 2) / (2 * std * std)));
     }
     /**
-     * Devolve a forca linear, com limite à esquerda e à direita
+     * Devolve a forca linear, com limiares
      */
     public float XLimitLinear()
     {
@@ -87,7 +87,7 @@ public class ResourceDetectorScript : MonoBehaviour
         return 0;
     }
     /**
-     * Devolve a forca logaritmica, com limite à esquerda e à direita
+     * Devolve a forca logaritmica, com limiares
      */
     public float XLimitLog()
     {
@@ -100,7 +100,7 @@ public class ResourceDetectorScript : MonoBehaviour
         return 0;
     }
     /**
-     * Devolve a forca gaussiana, com limite à esquerda e à direita
+     * Devolve a forca gaussiana, com limiares
      */
     public float XLimitGauss()
     {
@@ -114,7 +114,7 @@ public class ResourceDetectorScript : MonoBehaviour
         return 0;
     }
     /**
-     * Devolve a forca liniear, com limite inferior e superior
+     * Devolve a forca liniear, com limites
      */
     public float YLimitLinear()
     {
@@ -131,7 +131,7 @@ public class ResourceDetectorScript : MonoBehaviour
         return strength;
     }
     /**
-     * Devolve a forca logarimica, com limite inferior e superior
+     * Devolve a forca logarimica, com limites
      */
     public float YLimitLog()
     {
@@ -149,7 +149,7 @@ public class ResourceDetectorScript : MonoBehaviour
         return res;
     }
     /**
-     * Devolve a forca gaussiana, com limite inferior e superior
+     * Devolve a forca gaussiana, com limites
      */
     public float YLimitGauss()
     {
@@ -168,8 +168,7 @@ public class ResourceDetectorScript : MonoBehaviour
         return res;
     }
     /**
-     * Devolve a forca linear, com limite inferior e superior
-     * e com limite à esquerda e à direita
+     * Devolve a forca linear, com limites e limiares
      */
     public float GetLinearOuput()
     {
@@ -191,8 +190,7 @@ public class ResourceDetectorScript : MonoBehaviour
         return infLimitY;
     }
     /**
-     * Devolve a forca logaritmica, com limite inferior e superior
-     * e com limite à esquerda e à direita
+     * Devolve a forca logaritmica, com limites e limiares
      */
     public virtual float GetLogaritmicOutput()
     {
@@ -215,8 +213,7 @@ public class ResourceDetectorScript : MonoBehaviour
         return infLimitY;
     }
     /**
-     * Devolve a forca gaussiana, com limite inferior e superior
-     * e com limite à esquerda e à direita
+     * Devolve a forca gaussiana, com limites e limiares
      */
     public virtual float GetGaussianOutput()
     {
