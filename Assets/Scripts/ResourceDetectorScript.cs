@@ -9,7 +9,7 @@ using UnityEngine;
 
 public class ResourceDetectorScript : MonoBehaviour
 {
-    protected float angleOfSensors = 10f;
+    protected float angleOfSensors = 5f;
     protected float rangeOfSensors = 30f;
     protected Vector3 initialTransformUp;
     protected Vector3 initialTransformFwd;

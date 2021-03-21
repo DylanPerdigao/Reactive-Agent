@@ -82,6 +82,7 @@ public class LinearRobotUnitBehaviour : RobotUnit
                 {
                     case Limits.NoLimits:
                         resourceValue = weightResource * resourcesDetector.NonLimitsGauss();
+                        print("aquiiiii res\n");
                         break;
                     case Limits.XLimits:
                         resourceValue = weightResource * resourcesDetector.XLimitGauss();
@@ -148,6 +149,7 @@ public class LinearRobotUnitBehaviour : RobotUnit
                 {
                     case Limits.NoLimits:
                         wallValue = weightWall * blockDetector.NonLimitsGauss();
+                        print("aquiiiii wall\n");
                         break;
                     case Limits.XLimits:
                         wallValue = weightWall * blockDetector.XLimitGauss();

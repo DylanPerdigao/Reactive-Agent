@@ -1063,16 +1063,28 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1286279754}
     - target: {fileID: 1022615238940490695, guid: b606527f8af28664a894844f3f526637, type: 3}
+      propertyPath: wallLimits
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1022615238940490695, guid: b606527f8af28664a894844f3f526637, type: 3}
       propertyPath: weightWall
-      value: -1
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1022615238940490695, guid: b606527f8af28664a894844f3f526637, type: 3}
+      propertyPath: resourceLimits
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1022615238940490695, guid: b606527f8af28664a894844f3f526637, type: 3}
       propertyPath: weightResource
-      value: 8
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1625669444414051546, guid: b606527f8af28664a894844f3f526637, type: 3}
       propertyPath: std
-      value: 0.2
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1625669444414051546, guid: b606527f8af28664a894844f3f526637, type: 3}
+      propertyPath: mean
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4098859518129120615, guid: b606527f8af28664a894844f3f526637, type: 3}
       propertyPath: m_RootOrder
@@ -1119,12 +1131,28 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7314612682239532039, guid: b606527f8af28664a894844f3f526637, type: 3}
-      propertyPath: infLimitX
+      propertyPath: std
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7314612682239532039, guid: b606527f8af28664a894844f3f526637, type: 3}
+      propertyPath: mean
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7314612682239532039, guid: b606527f8af28664a894844f3f526637, type: 3}
+      propertyPath: infLimitX
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 7314612682239532039, guid: b606527f8af28664a894844f3f526637, type: 3}
       propertyPath: infLimitY
-      value: 0.1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7314612682239532039, guid: b606527f8af28664a894844f3f526637, type: 3}
+      propertyPath: supLimitX
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7314612682239532039, guid: b606527f8af28664a894844f3f526637, type: 3}
+      propertyPath: supLimitY
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8831919988329666845, guid: b606527f8af28664a894844f3f526637, type: 3}
       propertyPath: m_Name
