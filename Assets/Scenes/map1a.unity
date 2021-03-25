@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657993, g: 0.49641424, b: 0.57481825, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657958, g: 0.49641377, b: 0.57481766, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1064,11 +1064,15 @@ PrefabInstance:
       objectReference: {fileID: 1286279754}
     - target: {fileID: 1022615238940490695, guid: b606527f8af28664a894844f3f526637, type: 3}
       propertyPath: wallLimits
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1022615238940490695, guid: b606527f8af28664a894844f3f526637, type: 3}
       propertyPath: weightWall
-      value: -2
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1022615238940490695, guid: b606527f8af28664a894844f3f526637, type: 3}
+      propertyPath: wallFunction
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1022615238940490695, guid: b606527f8af28664a894844f3f526637, type: 3}
       propertyPath: resourceLimits
@@ -1076,7 +1080,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1022615238940490695, guid: b606527f8af28664a894844f3f526637, type: 3}
       propertyPath: weightResource
-      value: 1
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1022615238940490695, guid: b606527f8af28664a894844f3f526637, type: 3}
+      propertyPath: resourceFunction
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1625669444414051546, guid: b606527f8af28664a894844f3f526637, type: 3}
       propertyPath: std
@@ -1084,6 +1092,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1625669444414051546, guid: b606527f8af28664a894844f3f526637, type: 3}
       propertyPath: mean
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1625669444414051546, guid: b606527f8af28664a894844f3f526637, type: 3}
+      propertyPath: infLimitX
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1625669444414051546, guid: b606527f8af28664a894844f3f526637, type: 3}
+      propertyPath: infLimitY
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1625669444414051546, guid: b606527f8af28664a894844f3f526637, type: 3}
+      propertyPath: supLimitX
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1625669444414051546, guid: b606527f8af28664a894844f3f526637, type: 3}
+      propertyPath: supLimitY
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4098859518129120615, guid: b606527f8af28664a894844f3f526637, type: 3}
@@ -1136,7 +1160,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7314612682239532039, guid: b606527f8af28664a894844f3f526637, type: 3}
       propertyPath: mean
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7314612682239532039, guid: b606527f8af28664a894844f3f526637, type: 3}
       propertyPath: infLimitX
@@ -1152,7 +1176,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7314612682239532039, guid: b606527f8af28664a894844f3f526637, type: 3}
       propertyPath: supLimitY
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8831919988329666845, guid: b606527f8af28664a894844f3f526637, type: 3}
       propertyPath: m_Name
